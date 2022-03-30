@@ -11,12 +11,14 @@ import java.math.BigDecimal;
 public class MyCurrencyExchangeTransformer {
     Logger log = LoggerFactory.getLogger(CurrencyExchange.class);
 
-    public void tranformMessage(CurrencyExchange myCurrencyExchange) {
+    public CurrencyExchange tranformMessage(CurrencyExchange myCurrencyExchange) {
         myCurrencyExchange.setConversionMultiple(
                 myCurrencyExchange.getConversionMultiple()
                         .multiply(BigDecimal.TEN)
         );
 
         log.info("Modified the received currencyExchange to {}", myCurrencyExchange.getConversionMultiple() );
+
+        return myCurrencyExchange;
     }
 }

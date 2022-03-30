@@ -21,10 +21,13 @@ public class FileTransferRoute extends RouteBuilder {
     public void configure() throws Exception {
 
 
-        from("file:files/input")
+        from("file:files/json")
                 .unmarshal().json(JsonLibrary.Jackson, CurrencyExchange.class)
                 .bean(myCurrencyExchangeTransformer)
                 .process(currencyExchangeProcessor)
                 .to("log:received-message-from-json-folder");
+
+        from("file:files/xml")
+                .to("activemq:my-activemq-xml");
     }
 }
