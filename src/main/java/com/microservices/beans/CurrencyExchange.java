@@ -1,8 +1,9 @@
 package com.microservices.beans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class CurrencyExchange {
+public class CurrencyExchange implements Serializable {
     private Long id;
     private String from;
     private String to;

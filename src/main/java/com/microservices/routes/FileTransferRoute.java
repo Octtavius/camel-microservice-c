@@ -28,6 +28,10 @@ public class FileTransferRoute extends RouteBuilder {
                 .to("log:received-message-from-json-folder");
 
         from("file:files/xml")
+                .unmarshal().jacksonXml(CurrencyExchange.class)
+                .log("${body}")
+                .process(currencyExchangeProcessor)
+//                .to("log:received-xml-file");
                 .to("activemq:my-activemq-xml");
     }
 }
